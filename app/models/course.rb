@@ -7,6 +7,6 @@ class Course < ApplicationRecord
   has_and_belongs_to_many :categories
 
   def first_lesson
-    self.lessons.first
+    self.lessons.order(:position).first
   end
 end
