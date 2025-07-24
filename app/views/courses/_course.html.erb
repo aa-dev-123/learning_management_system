@@ -1,0 +1,10 @@
+<div class="max-w-sm bg-white overflow-hidden hover:bg-voodoo-100 border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+  <%= link_to course_path(course) do %>
+    <%= image_tag("https://placehold.co/300", class: "rounded-t-lg") %>
+    <div class="p-5">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white-100 dark:text-white"><%= course.title%></h5>
+        <p class="mb-3 font-normal text-white-700 dark:text-white-100"> Offered by Alishba Atther </p>
+        <p class="mb-3 font-normal text-white-700 dark:text-white-100"> Free </p>
+    </div>
+  <% end %>
+</div>
