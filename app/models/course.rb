@@ -4,4 +4,5 @@ class Course < ApplicationRecord
   end
 
   has_many :lessons
+  has_and_belongs_to_many :categories
 end
