@@ -8,6 +8,8 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.enable_reloading = true
 
+  config.hosts << "6dcf317ccc29.ngrok-free.app"
+
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -16,6 +18,9 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
+
+  # Ensure you have defined default url options in your environments files. Here is an example of default_url_options appropriate for a development environment in config/environments/development.rb:
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
