@@ -7,4 +7,5 @@ class User < ApplicationRecord
   enum role: { learner: 0, admin: 1 }
 
   has_many :lesson_users
+  has_many :course_users
 end
