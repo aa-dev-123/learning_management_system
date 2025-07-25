@@ -3,19 +3,20 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1 or /lessons/1.json
   def show
+    @completed_lessons = current_user.lesson_users.where(completed: true).pluck(:lesson_id)
     @course = @lesson.course
   end
 
   # PATCH/PUT /lessons/1 or /lessons/1.json
   def update
-    respond_to do |format|
-      if @lesson.update(lesson_params)
-        format.html { redirect_to @lesson, notice: "Lesson was successfully updated." }
-        format.json { render :show, status: :ok, location: @lesson }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
-      end
+    @lesson_user = LessonUser.find_or_create_by(user: current_user, lesson: @lesson)
+    @lesson_user.update(completed: true)
+    @next_lesson = @lesson.course.lessons.where("position > ?", @lesson.position).order(:position).first
+
+    if @next_lesson
+      redirect_to course_lesson_path(@lesson.course, @next_lesson)
+    else
+      redirect_to course_path(@lesson.course), notice: "Yay, You have completed the course."
     end
   end
 

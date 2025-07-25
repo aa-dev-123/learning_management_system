@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @completed_lessons = current_user&.lesson_users&.joins(:lesson)&.where(completed: true, lesson: { course_id: @course.id })&.pluck(:lesson_id)
   end
 
   private
