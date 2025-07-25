@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: { learner: 0, admin: 1 }
+
+  has_many :lesson_users
 end
