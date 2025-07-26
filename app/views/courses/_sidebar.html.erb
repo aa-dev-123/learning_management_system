@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  <% if false %>
+  <% if @course.paid %>
     <div class="mt-6 flex justify-center items-center w-full">
       <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full">
         <div class="bg-amaranth-500 p-4">
@@ -59,7 +59,7 @@
               <% if @course.premium_description.present? %>
                 <%= @course.premium_description %>
               <% end %>
-              <%= form_tag checkouts_path(@course), method: :post, class: "mt-4" do %>
+              <%= form_tag checkouts_path(@course), method: :post, data: { turbo: false }, class: "mt-4" do %>
                 <%= hidden_field_tag :course_id, @course.id %>
                 <%= hidden_field_tag :stripeEmail, current_user.email %>
                 <%= button_tag "Unlock Full Course", class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
